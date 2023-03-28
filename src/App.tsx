@@ -131,9 +131,11 @@ export default function App() {
             <li className="bg-white mb-3">
               <MDBTextArea label="Message" id="textAreaExample" rows={4} />
             </li>
-            <MDBBtn color="info" rounded className="float-end">
-              Send
-            </MDBBtn>
+            {hasLoaded && (
+              <MDBBtn color="info" rounded className="float-end">
+                Send
+              </MDBBtn>
+            )}
           </MDBTypography>
         </MDBCol>
       </MDBRow>
