@@ -12,6 +12,14 @@ import {
 } from "mdb-react-ui-kit";
 
 export default function App() {
+  // Initialize our messages list with some sample messages:
+  const initialMessages = [
+    { id: 1, msg: "Hello!" },
+    { id: 2, msg: "What's up?" },
+    { id: 3, msg: "Hello!" },
+  ];
+  let count = initialMessages.length;
+
   return (
     <MDBContainer fluid className="py-5" style={{ backgroundColor: "#000" }}>
       <MDBRow>
