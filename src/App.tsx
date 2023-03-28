@@ -93,7 +93,7 @@ export default function App() {
                 {messages.map((message) => {
                   if (message.bot)
                     return (
-                      <li className="d-flex justify-content-between mb-4">
+                      <li className="d-flex justify-content-between mb-4" key={message.id}>
                         <img
                           src="src/assets/bot_avatar.png"
                           alt="avatar"
@@ -112,7 +112,7 @@ export default function App() {
                     );
                   else
                     return (
-                      <li className="d-flex justify-content-between mb-4">
+                      <li className="d-flex justify-content-between mb-4" key={message.id}>
                         <MDBCard className="w-100">
                           <MDBCardHeader className="d-flex justify-content-between p-3">
                             <p className="fw-bold mb-0">Guest</p>
@@ -138,7 +138,7 @@ export default function App() {
               <MDBTextArea label="Message" id="textAreaExample" rows={4} />
             </li>
             {hasLoaded && (
-              <MDBBtn color="info" rounded className="float-end">
+              <MDBBtn color="info" rounded className="float-end" onClick={sendMessage}>
                 Send
               </MDBBtn>
             )}
