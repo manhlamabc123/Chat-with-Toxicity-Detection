@@ -75,7 +75,6 @@ export default function App() {
           });
         }
       });
-      // console.log(labels);
       setToxicity({ isToxic: true, labels });
     } else {
       setMessages([...messages, { id: ++count, bot: true, msg: msg }]);
@@ -84,58 +83,11 @@ export default function App() {
     }
   };
 
-  // {hasMessages && (
-  //   <ul>
-  //     {messages.map((message) => {
-  //       return <li key={message.id}>{message.msg}</li>;
-  //     })}
-  //   </ul>
-  // )}
-
   return (
     <MDBContainer fluid className="py-5" style={{ backgroundColor: "#000" }}>
       <MDBRow>
         <MDBCol md="6" lg="8" xl="12">
           <MDBTypography listUnStyled>
-            {/* <li className="d-flex justify-content-between mb-4">
-              <img
-                src="src/assets/bot_avatar.png"
-                alt="avatar"
-                className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
-                width="60"
-              />
-              <MDBCard>
-                <MDBCardHeader className="d-flex justify-content-between p-3">
-                  <p className="fw-bold mb-0">Bot</p>
-                </MDBCardHeader>
-                <MDBCardBody>
-                  <p className="mb-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                </MDBCardBody>
-              </MDBCard>
-            </li>
-            <li className="d-flex justify-content-between mb-4">
-              <MDBCard className="w-100">
-                <MDBCardHeader className="d-flex justify-content-between p-3">
-                  <p className="fw-bold mb-0">Guest</p>
-                </MDBCardHeader>
-                <MDBCardBody>
-                  <p className="mb-0">
-                    Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium doloremque laudantium.
-                  </p>
-                </MDBCardBody>
-              </MDBCard>
-              <img
-                src="src/assets/client_avatar.jpg"
-                alt="avatar"
-                className="rounded-circle d-flex align-self-start ms-3 shadow-1-strong"
-                width="60"
-              />
-            </li> */}
             {hasMessages && (
               <ul>
                 {messages.map((message) => {
