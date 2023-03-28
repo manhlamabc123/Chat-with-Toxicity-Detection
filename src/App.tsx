@@ -10,6 +10,9 @@ import {
   MDBTextArea,
   MDBCardHeader,
 } from "mdb-react-ui-kit";
+import { useEffect, useState, useRef } from "react";
+import * as tf from "@tensorflow/tfjs";
+import { load } from "@tensorflow-models/toxicity";
 
 export default function App() {
   // Initialize our messages list with some sample messages:
