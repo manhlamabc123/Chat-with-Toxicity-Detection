@@ -12,6 +12,7 @@
     "@tensorflow-models/toxicity": "^1.2.2",
     "@tensorflow/tfjs": "^4.2.0",
     "bootstrap": "^5.2.3",
+    "mdb-react-ui-kit": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
