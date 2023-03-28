@@ -21,7 +21,8 @@ export default function App() {
     { id: 2, bot: false, msg: "What's up?" },
     { id: 3, bot: true, msg: "Hello!" },
   ];
-  let count = initialMessages.length;
+  let count = 3;
+  let count1  = 4;
 
   // The list of messages
   const [messages, setMessages] = useState(initialMessages);
@@ -76,9 +77,11 @@ export default function App() {
         }
       });
       setToxicity({ isToxic: true, labels });
+      setMessages([...messages, { id: ++count, bot: false, msg: msg }]);
+      setMessages([...messages, { id: ++count, bot: false, msg: msg }, { id: ++count1, bot: true, msg: "" }]);
     } else {
-      setMessages([...messages, { id: ++count, bot: true, msg: msg }]);
       setToxicity({ isToxic: false, labels: [] });
+      setMessages([...messages, { id: ++count, bot: false, msg: msg }, { id: ++count1, bot: true, msg: "No toxicity detected" }]);
       form.reset();
     }
   };
@@ -93,7 +96,10 @@ export default function App() {
                 {messages.map((message) => {
                   if (message.bot)
                     return (
-                      <li className="d-flex justify-content-between mb-4" key={message.id}>
+                      <li
+                        className="d-flex justify-content-between mb-4"
+                        key={message.id}
+                      >
                         <img
                           src="src/assets/bot_avatar.png"
                           alt="avatar"
@@ -112,15 +118,16 @@ export default function App() {
                     );
                   else
                     return (
-                      <li className="d-flex justify-content-between mb-4" key={message.id}>
+                      <li
+                        className="d-flex justify-content-between mb-4"
+                        key={message.id}
+                      >
                         <MDBCard className="w-100">
                           <MDBCardHeader className="d-flex justify-content-between p-3">
                             <p className="fw-bold mb-0">Guest</p>
                           </MDBCardHeader>
                           <MDBCardBody>
-                            <p className="mb-0">
-                              {message.msg}
-                            </p>
+                            <p className="mb-0">{message.msg}</p>
                           </MDBCardBody>
                         </MDBCard>
                         <img
@@ -134,13 +141,19 @@ export default function App() {
                 })}
               </ul>
             )}
-            <li className="bg-white mb-3">
+            {/* <li className="bg-white mb-3">
               <MDBTextArea label="Message" id="textAreaExample" rows={4} />
             </li>
             {hasLoaded && (
               <MDBBtn color="info" rounded className="float-end" onClick={sendMessage}>
                 Send
               </MDBBtn>
+            )} */}
+            {hasLoaded && (
+              <form onSubmit={sendMessage}>
+                <input type="text" name="message" placeholder="Enter message" />
+                <button>{isClassifying ? " ️‍️‍🕵 " : "Send"}</button>
+              </form>
             )}
           </MDBTypography>
         </MDBCol>
