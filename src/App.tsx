@@ -36,6 +36,54 @@ export default function App() {
   // Retain a value throughout the Component's render cycles WITHOUT triggering a render, as opposed to a useState variable
   const model = useRef<any | null>(null);
 
+  // Load the model just one, when the component mounts (hence the empty dependency array [])
+  useEffect(() => {
+    async function loadModel() {
+      const threshold = 0.9;
+      // Set a state that indicates the model is being loaded...
+      model.current = await load(threshold, []);
+      setHasLoaded(true);
+      // Set the state to false to let the user know that they can check the text
+      console.log("Model loaded");
+    }
+    loadModel();
+  }, []);
+
+  // Handle form submission: check the toxicity of the message and update accordingly:
+  const sendMessage = async (event: any) => {
+    // console.log("sendMessage()");
+    event.preventDefault(); // Prevent default HTML form behavior that will trigger an HTTP request and a page reload
+    const form = event.target;
+    const msg = form.message.value;
+
+    // Run the classifier on every message
+    setIsClassifying(true);
+    const predictions = await model.current.classify([msg]);
+    setIsClassifying(false);
+
+    // Is the message toxic?
+    const isToxic = predictions[6].results[0].match;
+
+    if (isToxic) {
+      const labels: any = [];
+      // Loop through the toxicity labels and create a list of them along with the corresponding percentages (level of confidence):
+      predictions.forEach((p: any) => {
+        if (p.results[0].match) {
+          labels.push({
+            label: p.label,
+            prob: Math.round(p.results[0].probabilities[1] * 100) + "%",
+          });
+        }
+      });
+      // console.log(labels);
+      setToxicity({ isToxic: true, labels });
+    } else {
+      setMessages([...messages, { id: ++count, msg: msg }]);
+      setToxicity({ isToxic: false, labels: [] });
+      form.reset();
+    }
+  };
+
   return (
     <MDBContainer fluid className="py-5" style={{ backgroundColor: "#000" }}>
       <MDBRow>
