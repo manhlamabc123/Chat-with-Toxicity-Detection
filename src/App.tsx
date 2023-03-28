@@ -17,9 +17,9 @@ import { load } from "@tensorflow-models/toxicity";
 export default function App() {
   // Initialize our messages list with some sample messages:
   const initialMessages = [
-    { id: 1, msg: "Hello!" },
-    { id: 2, msg: "What's up?" },
-    { id: 3, msg: "Hello!" },
+    { id: 1, bot: true, msg: "Hello!" },
+    { id: 2, bot: false, msg: "What's up?" },
+    { id: 3, bot: true, msg: "Hello!" },
   ];
   let count = initialMessages.length;
 
@@ -78,18 +78,26 @@ export default function App() {
       // console.log(labels);
       setToxicity({ isToxic: true, labels });
     } else {
-      setMessages([...messages, { id: ++count, msg: msg }]);
+      setMessages([...messages, { id: ++count, bot: true, msg: msg }]);
       setToxicity({ isToxic: false, labels: [] });
       form.reset();
     }
   };
+
+  // {hasMessages && (
+  //   <ul>
+  //     {messages.map((message) => {
+  //       return <li key={message.id}>{message.msg}</li>;
+  //     })}
+  //   </ul>
+  // )}
 
   return (
     <MDBContainer fluid className="py-5" style={{ backgroundColor: "#000" }}>
       <MDBRow>
         <MDBCol md="6" lg="8" xl="12">
           <MDBTypography listUnStyled>
-            <li className="d-flex justify-content-between mb-4">
+            {/* <li className="d-flex justify-content-between mb-4">
               <img
                 src="src/assets/bot_avatar.png"
                 alt="avatar"
@@ -127,7 +135,53 @@ export default function App() {
                 className="rounded-circle d-flex align-self-start ms-3 shadow-1-strong"
                 width="60"
               />
-            </li>
+            </li> */}
+            {hasMessages && (
+              <ul>
+                {messages.map((message) => {
+                  if (message.bot)
+                    return (
+                      <li className="d-flex justify-content-between mb-4">
+                        <img
+                          src="src/assets/bot_avatar.png"
+                          alt="avatar"
+                          className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
+                          width="60"
+                        />
+                        <MDBCard className="w-100">
+                          <MDBCardHeader className="d-flex justify-content-between p-3">
+                            <p className="fw-bold mb-0">Bot</p>
+                          </MDBCardHeader>
+                          <MDBCardBody>
+                            <p className="mb-0 text-end">{message.msg}</p>
+                          </MDBCardBody>
+                        </MDBCard>
+                      </li>
+                    );
+                  else
+                    return (
+                      <li className="d-flex justify-content-between mb-4">
+                        <MDBCard className="w-100">
+                          <MDBCardHeader className="d-flex justify-content-between p-3">
+                            <p className="fw-bold mb-0">Guest</p>
+                          </MDBCardHeader>
+                          <MDBCardBody>
+                            <p className="mb-0">
+                              {message.msg}
+                            </p>
+                          </MDBCardBody>
+                        </MDBCard>
+                        <img
+                          src="src/assets/client_avatar.jpg"
+                          alt="avatar"
+                          className="rounded-circle d-flex align-self-start ms-3 shadow-1-strong"
+                          width="60"
+                        />
+                      </li>
+                    );
+                })}
+              </ul>
+            )}
             <li className="bg-white mb-3">
               <MDBTextArea label="Message" id="textAreaExample" rows={4} />
             </li>
