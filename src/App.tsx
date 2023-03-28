@@ -23,6 +23,19 @@ export default function App() {
   ];
   let count = initialMessages.length;
 
+  // The list of messages
+  const [messages, setMessages] = useState(initialMessages);
+  // The state of toxicity for the message we just typed
+  const [toxicity, setToxicity] = useState({ isToxic: false, labels: [] });
+  // A simple state variable to reflect the classifying process status
+  const [isClassifying, setIsClassifying] = useState(false);
+  // Has the Toxicity model been loaded?
+  const [hasLoaded, setHasLoaded] = useState(false);
+  // Should we render the ul that will hold the messages if no messages are available?
+  const hasMessages = messages.length > 0;
+  // Retain a value throughout the Component's render cycles WITHOUT triggering a render, as opposed to a useState variable
+  const model = useRef<any | null>(null);
+
   return (
     <MDBContainer fluid className="py-5" style={{ backgroundColor: "#000" }}>
       <MDBRow>
