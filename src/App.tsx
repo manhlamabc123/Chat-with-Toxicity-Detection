@@ -21,8 +21,8 @@ export default function App() {
     { id: 2, bot: false, msg: "What's up?" },
     { id: 3, bot: true, msg: "Hello!" },
   ];
-  let count = 3;
-  let count1  = 4;
+  // let count = 3;
+  // let count1 = 4;
 
   // The list of messages
   const [messages, setMessages] = useState(initialMessages);
@@ -35,6 +35,8 @@ export default function App() {
   // Should we render the ul that will hold the messages if no messages are available?
   const hasMessages = messages.length > 0;
   // Retain a value throughout the Component's render cycles WITHOUT triggering a render, as opposed to a useState variable
+  let [count, setCount] = useState(3);
+  let [count1, setCount1] = useState(4);
   const model = useRef<any | null>(null);
 
   // Load the model just one, when the component mounts (hence the empty dependency array [])
@@ -77,11 +79,26 @@ export default function App() {
         }
       });
       setToxicity({ isToxic: true, labels });
-      setMessages([...messages, { id: ++count, bot: false, msg: msg }]);
-      setMessages([...messages, { id: ++count, bot: false, msg: msg }, { id: ++count1, bot: true, msg: "" }]);
+      setMessages([
+        ...messages,
+        { id: ++count, bot: false, msg: msg },
+        {
+          id: ++count1,
+          bot: true,
+          msg: `${labels[0].label} ${labels[0].prob}`,
+        },
+      ]);
+      setCount(count + 1);
+      setCount1(count1 + 1);
     } else {
       setToxicity({ isToxic: false, labels: [] });
-      setMessages([...messages, { id: ++count, bot: false, msg: msg }, { id: ++count1, bot: true, msg: "No toxicity detected" }]);
+      setMessages([
+        ...messages,
+        { id: ++count, bot: false, msg: msg },
+        { id: ++count1, bot: true, msg: "No toxicity detected" },
+      ]);
+      setCount(count + 1);
+      setCount1(count1 + 1);
       form.reset();
     }
   };
