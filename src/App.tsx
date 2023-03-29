@@ -95,24 +95,17 @@ export default function App() {
       setToxicity({ isToxic: true, labels });
       setMessages([
         ...messages,
-        { id: ++count, bot: false, msg: msg },
         {
-          id: ++count1,
+          id: ++count,
           bot: true,
-          msg: `${labels[0].label} ${labels[0].prob}`,
+          msg: `Detected: ${labels[0].label} ${labels[0].prob}! I shall not allow that to be sent!`,
         },
       ]);
       setCount(count + 1);
-      setCount1(count1 + 1);
     } else {
       setToxicity({ isToxic: false, labels: [] });
-      setMessages([
-        ...messages,
-        { id: ++count, bot: false, msg: msg },
-        { id: ++count1, bot: true, msg: "No toxicity detected" },
-      ]);
+      setMessages([...messages, { id: ++count, bot: false, msg: msg }]);
       setCount(count + 1);
-      setCount1(count1 + 1);
       form.reset();
     }
   };
