@@ -17,12 +17,27 @@ import { load } from "@tensorflow-models/toxicity";
 export default function App() {
   // Initialize our messages list with some sample messages:
   const initialMessages = [
-    { id: 1, bot: true, msg: "Hello!" },
-    { id: 2, bot: false, msg: "What's up?" },
-    { id: 3, bot: true, msg: "Hello!" },
+    {
+      id: 1,
+      bot: true,
+      msg: "Hello! I'm an AI language model designed to detect potentially toxic or offensive language in text.",
+    },
+    {
+      id: 2,
+      bot: true,
+      msg: "My goal is to promote healthy and respectful communication, and to help prevent harmful or hurtful interactions. If my system detects language that may be perceived as toxic or offensive, I'll notify you so that you can consider revising your message before sending it.",
+    },
+    {
+      id: 3,
+      bot: true,
+      msg: "Example bad words would: Fuck, Bitch, Suck, ...",
+    },
+    {
+      id: 4,
+      bot: true,
+      msg: "日本のユーザーの皆様へ、現時では当サービスは英語のみの提供となっております。将来的には、皆様が必要とするサービスを提供できるようにサービスのアップデートを約束いたします。今のところは、当サービスをお楽しみください。",
+    },
   ];
-  // let count = 3;
-  // let count1 = 4;
 
   // The list of messages
   const [messages, setMessages] = useState(initialMessages);
@@ -35,8 +50,7 @@ export default function App() {
   // Should we render the ul that will hold the messages if no messages are available?
   const hasMessages = messages.length > 0;
   // Retain a value throughout the Component's render cycles WITHOUT triggering a render, as opposed to a useState variable
-  let [count, setCount] = useState(3);
-  let [count1, setCount1] = useState(4);
+  let [count, setCount] = useState(4);
   const model = useRef<any | null>(null);
 
   // Load the model just one, when the component mounts (hence the empty dependency array [])
