@@ -159,19 +159,29 @@ export default function App() {
                 })}
               </ul>
             )}
-            {/* <li className="bg-white mb-3">
-              <MDBTextArea label="Message" id="textAreaExample" rows={4} />
-            </li>
-            {hasLoaded && (
-              <MDBBtn color="info" rounded className="float-end" onClick={sendMessage}>
-                Send
-              </MDBBtn>
-            )} */}
             {hasLoaded && (
               <form onSubmit={sendMessage}>
-                <input type="text" name="message" placeholder="Enter message" />
-                <button>{isClassifying ? " ️‍️‍🕵 " : "Send"}</button>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="message"
+                    placeholder="Enter message"
+                  />
+                  <button type="button" className="btn btn-primary">
+                    {isClassifying ? "Checking..." : "Send"}
+                  </button>
+                </div>
               </form>
+            )}
+            {hasLoaded ? (
+              ""
+            ) : (
+              <MDBCard className="w-100">
+                <MDBCardBody>
+                  <p className="mb-0 text-center">Loading model...</p>
+                </MDBCardBody>
+              </MDBCard>
             )}
           </MDBTypography>
         </MDBCol>
