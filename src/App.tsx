@@ -131,11 +131,8 @@ export default function App() {
                           width="60"
                         />
                         <MDBCard className="w-100">
-                          <MDBCardHeader className="d-flex justify-content-between p-3">
-                            <p className="fw-bold mb-0">Bot</p>
-                          </MDBCardHeader>
                           <MDBCardBody>
-                            <p className="mb-0 text-end">{message.msg}</p>
+                            <p className="mb-0 text-start">{message.msg}</p>
                           </MDBCardBody>
                         </MDBCard>
                       </li>
@@ -147,11 +144,8 @@ export default function App() {
                         key={message.id}
                       >
                         <MDBCard className="w-100">
-                          <MDBCardHeader className="d-flex justify-content-between p-3">
-                            <p className="fw-bold mb-0">Guest</p>
-                          </MDBCardHeader>
                           <MDBCardBody>
-                            <p className="mb-0">{message.msg}</p>
+                            <p className="mb-0 text-end">{message.msg}</p>
                           </MDBCardBody>
                         </MDBCard>
                         <img
