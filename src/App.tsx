@@ -125,7 +125,7 @@ export default function App() {
                         key={message.id}
                       >
                         <img
-                          src="src/assets/bot_avatar.png"
+                          src="https://media.istockphoto.com/id/1221348467/vi/vec-to/chat-bot-ai-v%C3%A0-kh%C3%A1i-ni%E1%BB%87m-h%E1%BB%97-tr%E1%BB%A3-d%E1%BB%8Bch-v%E1%BB%A5-kh%C3%A1ch-h%C3%A0ng-vector-ph%E1%BA%B3ng-ng%C6%B0%E1%BB%9Di-minh-h%E1%BB%8Da-robot-m%E1%BB%89m.jpg?s=1024x1024&w=is&k=20&c=aR5kV8aETWKM3VMJj7Qtug0gcDeJ7m_RQThXlQCyMTk="
                           alt="avatar"
                           className="rounded-circle d-flex align-self-start me-3 shadow-1-strong"
                           width="60"
@@ -149,7 +149,7 @@ export default function App() {
                           </MDBCardBody>
                         </MDBCard>
                         <img
-                          src="src/assets/client_avatar.jpg"
+                          src="https://static.vecteezy.com/system/resources/previews/007/296/447/non_2x/user-icon-in-flat-style-person-icon-client-symbol-vector.jpg"
                           alt="avatar"
                           className="rounded-circle d-flex align-self-start ms-3 shadow-1-strong"
                           width="60"
@@ -168,7 +168,7 @@ export default function App() {
                     name="message"
                     placeholder="Enter message"
                   />
-                  <button type="button" className="btn btn-primary">
+                  <button type="submit" className="btn btn-primary">
                     {isClassifying ? "Checking..." : "Send"}
                   </button>
                 </div>
